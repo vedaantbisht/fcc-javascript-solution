@@ -1,0 +1,17 @@
+// freeCodeCamp: Missing Letters
+// This function finds the missing letter in a consecutive alphabet sequence
+
+function fearNotLetter(str) {
+  for (let i = 0; i < str.length - 1; i++) {
+    let currentNode = str.charCodeAt(i);
+    let nextNode = str.charCodeAt(i + 1);
+
+    if (nextNode !== currentNode + 1) {
+      return String.fromCharCode(currentNode + 1);
+    }
+  }
+  return undefined;
+}
+
+fearNotLetter("abce");    
+fearNotLetter("abcdefghjklmno");
