@@ -1,0 +1,17 @@
+///Implement the Slice and Splice Algorithm
+
+function frankenSplice(arr1, arr2, n) {
+
+  // Step 1: copy arr2 (so original is safe)
+  let newArr = arr2.slice();
+
+  // Step 2: insert arr1 elements into copied array
+  for (let i = 0; i < arr1.length; i++) {
+    newArr.splice(n + i, 0, arr1[i]);
+  }
+
+  // Step 3: return new array
+  return newArr;
+}
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
+//[4, 1, 2, 3, 5, 6]
