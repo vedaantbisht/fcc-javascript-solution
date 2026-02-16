@@ -1,0 +1,92 @@
+//Build an Inventory Management Program
+
+const inventory = [];
+
+// 1️⃣ Find index
+function findProductIndex(productName){
+  const searchName = productName.toLowerCase();
+
+  for(let i = 0; i < inventory.length; i++){
+    if(inventory[i].name === searchName){
+      return i;
+    }
+  }
+  return -1;
+}
+
+
+// 2️⃣ Add Product
+function addProduct(product){
+
+  const name = product.name.toLowerCase();
+  const index = findProductIndex(name);
+
+  // product already exists
+  if(index !== -1){
+    inventory[index].quantity += product.quantity;
+    console.log(name + " quantity updated");
+  }
+
+  // new product
+  else{
+    inventory.push({
+      name: name,
+      quantity: product.quantity
+    });
+    console.log(name + " added to inventory");
+  }
+}
+
+
+// 3️⃣ Remove Product
+function removeProduct(productName, qty){
+
+  const name = productName.toLowerCase();
+  const index = findProductIndex(name);
+
+  // product not found
+  if(index === -1){
+    console.log(name + " not found");
+    return;
+  }
+
+  const product = inventory[index];
+
+  // not enough quantity
+  if(product.quantity < qty){
+    console.log(
+      "Not enough " + name + " available, remaining pieces: " + product.quantity
+    );
+    return;
+  }
+
+  // subtract quantity
+  product.quantity -= qty;
+
+  // remove if 0
+  if(product.quantity === 0){
+    inventory.splice(index, 1);
+  }
+
+  console.log(
+    "Remaining " + name + " pieces: " + product.quantity
+  );
+}
+
+addProduct({name: "Apple", quantity: 10});
+addProduct({name: "apple", quantity: 5});
+removeProduct("APPLE", 8);
+removeProduct("apple", 10);
+removeProduct("mango", 2);
+
+console.log(inventory);
+
+/*
+apple added to inventory
+apple quantity updated
+Remaining apple pieces: 7
+Not enough apple available, remaining pieces: 7
+mango not found
+[ { name: 'apple', quantity: 7 } ]
+
+*/
