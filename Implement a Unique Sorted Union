@@ -1,0 +1,14 @@
+//Implement a Unique Sorted Union
+function uniteUnique(...arrays){
+  let totalArr = [].concat(...arrays);
+  
+  let result = [];
+
+  for(let i = 0; i<totalArr.length;i++){
+    if(!result.includes(totalArr[i])){
+      result.push(totalArr[i]);
+    }
+  }
+  return result;
+}
+uniteUnique([1,2,3],[3.4.3];
