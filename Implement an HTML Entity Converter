@@ -1,0 +1,40 @@
+//Implement an HTML Entity Converter
+
+function convertHTML(str){
+
+  let result = "";
+
+  for(const char of str){
+
+    if(char === "&"){
+      result += "&amp;";
+    }
+    else if(char === "<"){
+      result += "&lt;";
+    }
+    else if(char === ">"){
+      result += "&gt;";
+    }
+    else if(char === '"'){
+      result += "&quot;";
+    }
+    else if(char === "'"){
+      result += "&apos;";
+    }
+    else{
+      result += char;
+    }
+
+  }
+
+  return result;
+}
+
+console.log(convertHTML("Dolce & Gabbana"));
+console.log(convertHTML("<>"));
+console.log(convertHTML("Tom's \"car\""));
+
+//output
+Dolce &amp; Gabbana
+&lt;&gt;
+Tom&apos;s &quot;car&quot;
